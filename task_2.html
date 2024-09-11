@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <meta charset="UTF-8">
+    
+    <script>
+    window[Symbol.for('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}')] = new (class{constructor(e,t){this.name=e,this.destination=t,this.serverListeners={},this.bgRequestsListeners={},this.bgEventsListeners={},window.addEventListener("message",(e=>{const t=e.data,s=!(t.destination&&t.destination===this.name),n=!t.event;if(!s&&!n)if("MARIO_POST_SERVER__BG_RESPONSE"===t.event){const e=t.args;if(this.hasBgRequestListener(e.requestId)){try{this.bgRequestsListeners[e.requestId](e.response)}catch(e){}delete this.bgRequestsListeners[e.requestId]}}else if("MARIO_POST_SERVER__BG_EVENT"===t.event){const e=t.args;if(this.hasBgEventListener(e.event))try{this.bgEventsListeners[t.id](e.payload)}catch(e){}}else if(this.hasServerListener(t.event))try{this.serverListeners[t.event](t.args)}catch(e){}}))}emitToServer(e,t){const s=this.generateUIID(),n={args:t,destination:this.destination,event:e,id:s};return window.postMessage(n,location.origin),s}emitToBg(e,t){const s=this.generateUIID(),n={bgEventName:e,requestId:s,args:t};return this.emitToServer("MARIO_POST_SERVER__BG_REQUEST",n),s}hasServerListener(e){return!!this.serverListeners[e]}hasBgRequestListener(e){return!!this.bgRequestsListeners[e]}hasBgEventListener(e){return!!this.bgEventsListeners[e]}fromServerEvent(e,t){this.serverListeners[e]=t}fromBgEvent(e,t){this.bgEventsListeners[e]=t}fromBgResponse(e,t){this.bgRequestsListeners[e]=t}generateUIID(){return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,(function(e){const t=16*Math.random()|0;return("x"===e?t:3&t|8).toString(16)}))}})('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}', 'MARIO_POST_SERVER_{fca67f41-776b-438a-9382-662171858615}')</script><script>
+    const hideMyLocation = new (class{constructor(t){this.clientKey=t,this.watchIDs={},this.client=window[Symbol.for(t)];const e=navigator.geolocation.getCurrentPosition,o=navigator.geolocation.watchPosition,n=navigator.geolocation.clearWatch,i=this;navigator.geolocation.getCurrentPosition=function(t,o,n){i.handle(e,"GET",t,o,n)},navigator.geolocation.watchPosition=function(t,e,n){return i.handle(o,"WATCH",t,e,n)},navigator.geolocation.clearWatch=function(t){if(-1===t)return;const e=i.watchIDs[t];return delete i.watchIDs[t],n.apply(this,[e])}}handle(t,e,o,n,i){const a=this.client.emitToBg("HIDE_MY_LOCATION__GET_LOCATION");let r=this.getRandomInt(0,1e5);if(this.client.fromBgResponse(a,(a=>{if(a.enabled)if("SUCCESS"===a.status){const t=this.map(a);o(t)}else{const t=this.errorObj();n(t),r=-1}else{const a=[o,n,i],c=t.apply(navigator.geolocation,a);"WATCH"===e&&(this.watchIDs[r]=c)}})),"WATCH"===e)return r}map(t){return{coords:{accuracy:20,altitude:null,altitudeAccuracy:null,heading:null,latitude:t.latitude,longitude:t.longitude,speed:null},timestamp:Date.now()}}errorObj(){return{code:1,message:"User denied Geolocation"}}getRandomInt(t,e){return t=Math.ceil(t),e=Math.floor(e),Math.floor(Math.random()*(e-t+1))+t}})('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}')
+  </script>
+    <title>Семантика</title>
+<script>(()=>{const e=history.pushState,t=history.replaceState,a=history.back,r=history.forward;function n(){window.postMessage({_custom_type_:"CUSTOM_ON_URL_CHANGED"})}history.pushState=function(){e.apply(history,arguments),n()},history.replaceState=function(){t.apply(history,arguments),n()},history.back=function(){a.apply(history,arguments),n()},history.forward=function(){r.apply(history,arguments),n()}})()</script></head>
+<body >
+
+
+<!-- Header -->
+<!--<div class="header" >
+    <div class="nav">
+        <a class="nav-item" href="#">Главная</a>
+        <a class="nav-item" href="#">О нас</a>
+        <a class="nav-item" href="#">Услуги</a>
+        <a class="nav-item" href="#">Контакты</a>
+    </div> 
+</div>-->
+<header class = "Header">
+    <nav class = "nav">
+        <a class="nav-item" href="#">Главная</a>
+        <a class="nav-item" href="#">О нас</a>
+        <a class="nav-item" href="#">Услуги</a>
+        <a class="nav-item" href="#">Контакты</a>
+    </nav>
+</header>
+
+
+<!-- Content -->
+<div class="content">
+    <main class="main">
+        <section class="section">
+            <h1>Кто мы такие?</h1>
+            <p>Компания имеет своей целью разработку, производство и маркетинг инновационных продуктов с высокой технологической ценностью.</p>
+        </section>
+
+
+        <!--<div class="section">
+            <h2>Наши услуги</h2>
+            <p> Наши услуги будут иметь высокую технологическую ценность, поскольку они позволят пользователю получать автоматические переводы благодаря использованию нейронных сетей, а также отличную видимость и взаимосвязь с другими пользователями благодаря инструментам анализа данных с помощью конкретных баз данных, а также использование тегов, ключевых слов, в том числе благодаря эффективности и степени популярности в социальных сетях, и, наконец, благодаря оптимизации маркетинговых кампаний.</p>
+        </div>-->
+
+        <section class = "section"><h2>Наши услуги</h2>
+            <p> Наши услуги будут иметь высокую технологическую ценность, поскольку они позволят пользователю получать автоматические переводы благодаря использованию нейронных сетей, а также отличную видимость и взаимосвязь с другими пользователями благодаря инструментам анализа данных с помощью конкретных баз данных, а также использование тегов, ключевых слов, в том числе благодаря эффективности и степени популярности в социальных сетях, и, наконец, благодаря оптимизации маркетинговых кампаний.</p>
+        </section>
+
+        <section class="section">
+            <h2>Полезные статьи</h2>
+            <article class="article">
+                <h4>Название статьи</h4>
+                <data class="date" value="#">Опубликовано: 20.08.2021</data>
+                <div class="article-text">
+                    <p>Текст статьи.</p>
+                </div>
+            </article>
+
+            <article class="article">
+                <h4>Название статьи</h4>
+                <data class="date" value="#">Опубликовано: 30.18.2021</data>
+                <div class="article-text">
+                    <p>Текст статьи.</p>
+                </div>
+            </article>
+        </section>
+    </main><!-- /.main -->
+
+
+    <aside  class="sidebar">
+        <h4>Наши партнеры</h4>
+        <p><img src="img/some-img.jpg" alt=""></p>
+        <p><img src="img/some-img.jpg" alt=""></p>
+        <p><img src="img/some-img.jpg" alt=""></p>
+    </aside>
+</div><!-- /.content -->
+
+
+
+<!-- Footer -->
+<footer class="footer">
+    <h3>Наши контакты</h3>
+    <p>Адрес: Улица, дом, город</p>
+    <p>Телефон: +375291234567</p>
+    <p>Е-майл: info@website.by</p>
+</footer>
+
+
+
+
+</body></html>
